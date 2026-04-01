@@ -1,5 +1,5 @@
 import { Routes, Route, Link } from 'react-router-dom';
-import PokeList from './components/pokemon/PokemonList';
+import PokeList from './components/pokemon/PokemonList/PokemonList';
 import PokemonPage from './components/pokemon/PokemonPage';
 
 function Home() {

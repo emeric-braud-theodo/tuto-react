@@ -1,7 +1,8 @@
 import { useQuery } from '@tanstack/react-query';
-import { PokemonService } from '../../services/PokemonService';
+import { PokemonService } from '../../../services/PokemonService';
 import PokemonListRow from './PokemonListRow';
 
+import styles from "./PokemonList.module.css"
 function PokeList() {
     const { data, isLoading, isError } = useQuery({
         queryKey: ["poke_list"],
@@ -16,8 +17,8 @@ function PokeList() {
     if (!data) return <div>Empty result</div>;
     return (
         <div>
-            <h1>Liste des Pokemons</h1>
-            <div>
+            <h1 className="font-extrabold text-2xl">Liste des Pokemons</h1>
+            <div className={styles.PokemonListWrapper}>
                 {
                     data.map((item, index) => {
                         return (
