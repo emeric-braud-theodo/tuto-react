@@ -4,9 +4,11 @@ services:
       context: ./frontend
       dockerfile: Dockerfile
     ports:
-      - "3000:3000"
+      - "${FRONT_PORT}:3000"
     environment:
       - CHOKIDAR_USEPOLLING=true
+      - REACT_APP_BFF_BASE_URL=${BFF_BASE_URL}
+      - REACT_APP_BFF_PORT=${BFF_PORT}
     volumes:
       - ./frontend:/app
   bff:
@@ -14,6 +16,9 @@ services:
       context: ./bff
       dockerfile: Dockerfile
     ports:
-      - "3001:3000"
+      - "${BFF_PORT}:3000"
+    environment:
+      - FRONT_BASE_URL=${FRONT_BASE_URL}
+      - FRONT_PORT=${FRONT_PORT}
     volumes:
       - "./bff:/app"
