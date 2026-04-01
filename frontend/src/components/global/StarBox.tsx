@@ -1,0 +1,28 @@
+import styles from "./StarBox.module.css";
+
+type StarBoxProps = {
+    isCheckedState: boolean;
+    isCheckedStateChange: (checked: boolean) => void;
+};
+
+function StarBox({ isCheckedState, isCheckedStateChange }: StarBoxProps) {
+    return (
+        <button
+            type="button"
+            className={styles.starButton}
+            onClick={() => isCheckedStateChange(!isCheckedState)}
+            aria-pressed={isCheckedState}
+            aria-label={isCheckedState ? "Retirer des favoris" : "Ajouter aux favoris"}
+        >
+            <svg
+                className={isCheckedState ? styles.starChecked : styles.starUnchecked}
+                viewBox="0 0 24 24"
+                aria-hidden="true"
+            >
+                <path d="M12 2.5l2.94 5.96 6.58.96-4.76 4.64 1.12 6.55L12 17.52 6.12 20.61l1.12-6.55L2.48 9.42l6.58-.96L12 2.5z" />
+            </svg>
+        </button>
+    );
+}
+
+export default StarBox;

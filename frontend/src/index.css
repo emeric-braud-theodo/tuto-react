@@ -7,6 +7,33 @@ body {
   -moz-osx-font-smoothing: grayscale;
   color: var(--color-text);
   background-color: var(--color-bg);
+  background-image: url("./assets/images/bg.avif");
+  min-height: 100svh;
+}
+
+body:before {
+  content: "";
+  position: fixed;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.4);
+  backdrop-filter: blur(2px);
+
+  pointer-events: none;
+  z-index: 0;
+}
+
+body>* {
+  position: relative;
+  z-index: 1;
+}
+
+main {
+  max-width: 1200px;
+  margin: 10px auto;
+  padding: 20px;
+  background-color: var(--color-bg);
+  border-radius: 10px;
+  box-shadow: 0 0 5px rgba(0, 0, 0, 0.2);
 }
 
 code {
@@ -18,5 +45,13 @@ code {
   --color-primary: #d14747;
   --color-secondary: #2279c5;
   --color-bg: #f9fafb;
+  --color-bg-secondary: rgb(244, 244, 244);
   --color-text: #000000;
+}
+
+.FlexSpaced {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
 }

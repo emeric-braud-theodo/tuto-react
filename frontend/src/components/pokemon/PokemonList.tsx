@@ -16,13 +16,17 @@ function PokeList() {
     if (!data) return <div>Empty result</div>;
     return (
         <div>
-            {
-                data.map((item, index) => {
-                    return (
-                        <PokemonListRow key={index} poke={item} />
-                    );
-                })
-            }
+            <h1>Liste des Pokemons</h1>
+            <div>
+                {
+                    data.map((item, index) => {
+                        return (
+                            <PokemonListRow key={index} poke={item} />
+                        );
+                    })
+                }
+            </div>
+
         </div>
     );
 }

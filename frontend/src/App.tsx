@@ -8,7 +8,7 @@ function Home() {
 
 function App() {
   return (
-    <div>
+    <main>
       <nav>
         <Link to="/">Accueil</Link> | <Link to="/pokelist">Pokelist</Link>
       </nav>
@@ -18,7 +18,7 @@ function App() {
         <Route path="/pokelist" element={<PokeList />} />
         <Route path="/pokemon/:name" element={<PokemonPage />} />
       </Routes>
-    </div>
+    </main>
   );
 }
 
