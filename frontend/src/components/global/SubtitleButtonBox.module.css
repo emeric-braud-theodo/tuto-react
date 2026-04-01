@@ -1,0 +1,14 @@
+.SubtitleButtonBox {
+    all: unset;
+    background-color: var(--color-text);
+    color: var(--color-bg);
+    padding: 5px;
+    font-weight: bold;
+    border-radius: 10px;
+    transition: all 0.5s;
+}
+
+.SubtitleButtonBox:hover {
+    transform: scale(1.1);
+    cursor: pointer;
+}

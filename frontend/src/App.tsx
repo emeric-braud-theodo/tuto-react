@@ -1,9 +1,23 @@
-import PokeList from './lib/poke_api/components/PokeList';
+import { Routes, Route, Link } from 'react-router-dom';
+import PokeList from './components/pokemon/PokemonList';
+import PokemonPage from './components/pokemon/PokemonPage';
+
+function Home() {
+  return <h1>Accueil</h1>;
+}
 
 function App() {
   return (
     <div>
-      <PokeList />
+      <nav>
+        <Link to="/">Accueil</Link> | <Link to="/pokelist">Pokelist</Link>
+      </nav>
+
+      <Routes>
+        <Route path="/" element={<Home />} />
+        <Route path="/pokelist" element={<PokeList />} />
+        <Route path="/pokemon/:name" element={<PokemonPage />} />
+      </Routes>
     </div>
   );
 }

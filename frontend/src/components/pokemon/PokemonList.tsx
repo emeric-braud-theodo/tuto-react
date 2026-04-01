@@ -1,10 +1,11 @@
-import { PokeAPI } from "../PokeAPI";
 import { useQuery } from '@tanstack/react-query';
+import { PokemonService } from '../../services/PokemonService';
+import PokemonListRow from './PokemonListRow';
 
 function PokeList() {
     const { data, isLoading, isError } = useQuery({
         queryKey: ["poke_list"],
-        queryFn: PokeAPI.get_list_head
+        queryFn: PokemonService.getAll
     });
 
     if (isLoading) return <div>Loading...</div>;
@@ -16,9 +17,9 @@ function PokeList() {
     return (
         <div>
             {
-                data.results.map((item, index) => {
+                data.map((item, index) => {
                     return (
-                        <div key={index}> {item.name} </div>
+                        <PokemonListRow key={index} poke={item} />
                     );
                 })
             }
