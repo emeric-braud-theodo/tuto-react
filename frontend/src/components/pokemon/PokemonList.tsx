@@ -21,7 +21,7 @@ function PokeList() {
                 {
                     data.map((item, index) => {
                         return (
-                            <PokemonListRow key={index} poke={item} />
+                            <PokemonListRow key={index} poke={item} tabIndex={0} />
                         );
                     })
                 }
