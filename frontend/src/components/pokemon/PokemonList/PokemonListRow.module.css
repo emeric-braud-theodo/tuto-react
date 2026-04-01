@@ -4,7 +4,7 @@
     display: grid;
     width: 200px;
     margin: 10px;
-    transition: all 0.5s;
+    transition: transform 0.5s ease;
     cursor: pointer;
     overflow: hidden;
     height: 150px;
@@ -16,30 +16,54 @@
     transform: scale(1.1);
 }
 
-.PokemonListRowPortait {
-    overflow: hidden;
-    image-rendering: pixelated;
-    width: 100%;
-    transform: scale(1.0) translate(0, -30px);
-    margin: 0;
-    padding: 0;
-    position: absolute;
-    z-index: 3000;
-    transition: all 0.5s;
-}
-
-.PokemonListRowPortait:hover {
-    filter: drop-shadow(0 0 10px gold);
-
-}
-
-
 .PokemonListRowPortaitWrapper {
     overflow: hidden;
     height: 100%;
     width: 100%;
     margin: 0;
     padding: 0;
+    position: relative;
+}
+
+.PokemonListRowPortait {
+    overflow: hidden;
+    image-rendering: pixelated;
+    width: 100%;
+    margin: 0;
+    padding: 0;
+    position: absolute;
+    inset: 0;
+    z-index: 3000;
+    transform: scale(1) translate(0, -30px);
+    transition: opacity 0.4s ease, filter 0.3s ease, transform 0.4s ease;
+}
+
+.PokeListRow:hover .PokemonListRowPortait,
+.PokeListRow:focus .PokemonListRowPortait {
+    filter: drop-shadow(0 0 10px gold);
+}
+
+.baseImage {
+    opacity: 1;
+}
+
+.shinyImage {
+    opacity: 0;
+}
+
+.PokeListRow:hover .shinyImage,
+.PokeListRow:focus .shinyImage {
+    animation: shinyBlink 0.8s infinite alternate;
+}
+
+@keyframes shinyBlink {
+    from {
+        opacity: 0;
+    }
+
+    to {
+        opacity: 1;
+    }
 }
 
 .shimmer {
@@ -55,14 +79,11 @@
     left: -150%;
     width: 25%;
     height: 100%;
-
     background: linear-gradient(120deg,
             transparent,
             rgba(255, 255, 255, 0.6),
             transparent);
-
     transform: skewX(-20deg);
-
     animation: shimmer 10s infinite;
 }
 
@@ -76,12 +97,10 @@
     }
 }
 
-/* visible */
 .visible {
     opacity: 1;
 }
 
-/* cachée */
 .hidden {
     opacity: 0;
 }

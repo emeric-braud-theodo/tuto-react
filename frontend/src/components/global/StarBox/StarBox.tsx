@@ -11,7 +11,8 @@ type StarBoxProps = {
 function StarBox({ isCheckedState, isCheckedStateChange }: StarBoxProps) {
 
     const [showToasterState, showToasterStateChange] = useState(false);
-    const onClickFn = () => {
+    const onClickFn = (e: React.MouseEvent) => {
+        e.stopPropagation();
         showToasterStateChange(true);
     }
 
@@ -26,7 +27,7 @@ function StarBox({ isCheckedState, isCheckedStateChange }: StarBoxProps) {
             <button
                 type="button"
                 className={styles.starButton}
-                onClick={onClickFn}
+                onClick={(e) => onClickFn(e)}
                 aria-pressed={isCheckedState}
                 aria-label={isCheckedState ? "Retirer des favoris" : "Ajouter aux favoris"}
             >

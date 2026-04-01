@@ -3,7 +3,7 @@ import { useState } from "react";
 import styles from "./ConfirmButton.module.css"
 
 type ConfirmButtonProps = {
-    onClick?: () => void;
+    onClick?: React.MouseEventHandler<HTMLButtonElement>;
     children?: React.ReactNode;
     className?: string;
     hoverColor?: string;

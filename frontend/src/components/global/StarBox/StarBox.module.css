@@ -8,6 +8,8 @@
     display: inline-flex;
     align-items: center;
     justify-content: center;
+    position: relative;
+    z-index: 6000;
 }
 
 .starButton:focus-visible {

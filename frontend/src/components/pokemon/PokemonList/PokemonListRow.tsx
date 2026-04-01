@@ -4,11 +4,12 @@ import styles from "./PokemonListRow.module.css"
 import { StringUtils } from "../../../utils/StringUtils";
 import { useNavigate } from "react-router-dom";
 import { useState } from "react";
+import StarBox from "../../global/StarBox/StarBox";
+import { FavoriteService } from "../../../services/FavoriteService";
 type PokeListRowProps = { poke?: Pokemon, tabIndex?: number, isLoading?: boolean };
 function PokemonListRow({ poke, tabIndex, isLoading = false }: PokeListRowProps) {
     const navigate = useNavigate();
-    const [hoverState, hoverStateChange] = useState(false);
-
+    const [isStarButtonChecked, isStarButtonCheckedChange] = useState(isLoading ? false : !poke ? false : FavoriteService.isFavorite(poke.name ?? ""));
 
     if (isLoading) {
         return (
@@ -27,10 +28,19 @@ function PokemonListRow({ poke, tabIndex, isLoading = false }: PokeListRowProps)
     const goToDetailsFn = () => navigate(`/pokemon/${poke.name}`)
 
     return (
-        <div className={styles.PokeListRow} tabIndex={tabIndex} onClick={goToDetailsFn} onMouseEnter={() => hoverStateChange(true)} onMouseLeave={() => hoverStateChange(false)}>
+        <div className={styles.PokeListRow} tabIndex={tabIndex} onClick={goToDetailsFn}>
             <div className={`${styles.PokemonListRowPortaitWrapper} ${styles.shimmer}`}>
-                <img src={poke.sprites.front_default ?? ""} className={`${styles.PokemonListRowPortait} ${hoverState ? styles.hidden : styles.visible}`} />
-                <img src={poke.sprites.front_shiny ?? ""} className={`${styles.PokemonListRowPortait} ${hoverState ? styles.visible : styles.hidden}`} />
+                <StarBox isCheckedState={isStarButtonChecked} isCheckedStateChange={(arg) => { isStarButtonCheckedChange(arg); FavoriteService.setFavorite(poke.name ?? "", arg); }} />
+                <img
+                    src={poke.sprites.front_default ?? ""}
+                    className={`${styles.PokemonListRowPortait} ${styles.baseImage}`}
+                    alt={poke.name ?? ""}
+                />
+                <img
+                    src={poke.sprites.front_shiny ?? ""}
+                    className={`${styles.PokemonListRowPortait} ${styles.shinyImage}`}
+                    alt=""
+                />
 
             </div>
 
