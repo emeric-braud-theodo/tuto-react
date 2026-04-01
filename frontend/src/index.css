@@ -49,10 +49,11 @@ code {
   --color-primary: #d14747;
   --color-secondary: #2279c5;
   --color-bg: #f9fafb;
-  --color-bg-secondary: rgb(244, 244, 244);
+  --color-bg-secondary: rgba(255, 255, 255, 0.6), ;
   --color-text: #000000;
   --color-validate: rgb(91, 223, 91);
   --color-refuse: rgb(236, 69, 69);
+
 }
 
 .FlexSpaced {

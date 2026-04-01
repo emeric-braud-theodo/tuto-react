@@ -1,0 +1,21 @@
+.Pagination {
+    width: 100px;
+    margin: auto;
+    border-radius: 10px;
+    overflow: hidden;
+    box-shadow: 0 0 5px rgba(0, 0, 0, 0.2);
+    background-color: var(--color-bg-secondary);
+}
+
+.Pagination>p {
+    background-color: var(--color-bg-secondary);
+    font-weight: 500;
+}
+
+.Pagination>button {
+    font-weight: bold;
+    color: var(--color-bg);
+    background-color: var(--color-text);
+    padding-left: 5px;
+    padding-right: 5px;
+}

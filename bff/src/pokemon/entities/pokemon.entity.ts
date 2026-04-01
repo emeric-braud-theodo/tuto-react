@@ -3,6 +3,7 @@ class Sprites {
     back_female: string | null;
     back_shiny: string | null;
     front_default: string | null;
+    front_shiny: string | null;
 }
 
 export class Pokemon {

@@ -1,14 +1,27 @@
 import { Injectable } from '@nestjs/common';
 import { PokemonList } from './entities/pokemon_list.entity';
 import { Pokemon } from './entities/pokemon.entity';
-
+import { URLSearchParams } from 'url';
+import { PokemonListResult } from './dto/pokemon_list_result';
 
 @Injectable()
 export class PokemonService {
-  async findAll(): Promise<Array<Pokemon>> {
-    const result: PokemonList = await this.call("pokemon");
+  async findAll(limit?: number, offset?: number): Promise<PokemonListResult> {
+    let url = "pokemon";
+    let params = new URLSearchParams();
+    if (limit) params.append("limit", limit.toString());
+    if (offset) params.append("offset", offset.toString());
+
+    if (params.toString()) {
+      url += `?${params.toString()}`;
+    }
+
+    const result: PokemonList = await this.call(url);
     const pokeList = await Promise.all(result.results.map((result) => this.call_raw_url(result.url)));
-    return pokeList;
+    return {
+      count: result.count,
+      results: pokeList
+    };
   }
 
   async findOne(name: string): Promise<Pokemon> {

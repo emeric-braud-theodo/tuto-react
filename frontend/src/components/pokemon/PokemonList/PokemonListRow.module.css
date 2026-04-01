@@ -8,6 +8,7 @@
     cursor: pointer;
     overflow: hidden;
     height: 150px;
+    position: relative;
 }
 
 .PokeListRow:hover,
@@ -22,9 +23,16 @@
     transform: scale(1.0) translate(0, -30px);
     margin: 0;
     padding: 0;
-    position: relative;
+    position: absolute;
     z-index: 3000;
+    transition: all 0.5s;
 }
+
+.PokemonListRowPortait:hover {
+    filter: drop-shadow(0 0 10px gold);
+
+}
+
 
 .PokemonListRowPortaitWrapper {
     overflow: hidden;
@@ -66,4 +74,14 @@
     100% {
         left: 500%;
     }
+}
+
+/* visible */
+.visible {
+    opacity: 1;
+}
+
+/* cachée */
+.hidden {
+    opacity: 0;
 }
