@@ -3,7 +3,7 @@ import PokeList from './components/pokemon/PokemonList';
 import PokemonPage from './components/pokemon/PokemonPage';
 
 function Home() {
-  return <h1>Accueil</h1>;
+  return <div><h1>Accueil</h1><p>Bienvenue dans l'almanach des Pokemons !</p></div>;
 }
 
 function App() {

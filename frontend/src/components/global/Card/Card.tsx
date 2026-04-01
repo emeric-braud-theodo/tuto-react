@@ -1,7 +1,7 @@
 import styles from "./Card.module.css"
 
 type CardProps = {
-    children: React.ReactNode;
+    children?: React.ReactNode;
     className?: string;
 }
 

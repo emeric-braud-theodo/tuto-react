@@ -47,11 +47,20 @@ code {
   --color-bg: #f9fafb;
   --color-bg-secondary: rgb(244, 244, 244);
   --color-text: #000000;
+  --color-validate: rgb(91, 223, 91);
+  --color-refuse: rgb(236, 69, 69);
 }
 
 .FlexSpaced {
   display: flex;
   flex-direction: row;
   justify-content: space-between;
+  align-items: center;
+}
+
+.FlexSpacedArround {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-around;
   align-items: center;
 }

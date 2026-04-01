@@ -1,0 +1,15 @@
+.ConfirmButton {
+    all: unset;
+    color: var(--color-text);
+    background-color: var(--color-bg);
+    border-radius: 10px;
+    transition: all 0.5s;
+    padding: 10px;
+    font-weight: bold;
+    min-width: 150px;
+}
+
+.ConfirmButton:hover {
+    cursor: pointer;
+    transform: scale(1.1);
+}

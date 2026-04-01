@@ -3,9 +3,10 @@ import { useParams } from "react-router-dom";
 import { useQuery } from "@tanstack/react-query";
 import { PokemonService } from "../../services/PokemonService";
 import { FavoriteService } from "../../services/FavoriteService";
-import StarBox from "../global/StarBox";
-import Card from "../global/Card";
-import ImageFrame from "../global/ImageFrame";
+import { StringUtils } from "../../utils/StringUtils";
+import StarBox from "../global/StarBox/StarBox";
+import Card from "../global/Card/Card";
+import ImageFrame from "../global/ImageFrame/ImageFrame";
 import styles from "./PokemonPage.module.css";
 
 function PokemonPage() {
@@ -36,7 +37,7 @@ function PokemonPage() {
     return (
         <Card className={styles.PokemonPage}>
             <div className="FlexSpaced">
-                <h1>{name}</h1>
+                <h1>{StringUtils.capitalize(name)}</h1>
                 <StarBox isCheckedState={isFavState} isCheckedStateChange={toggle} />
             </div>
             <ImageFrame src={data?.sprites.front_default ?? ""} />
