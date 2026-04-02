@@ -16,4 +16,6 @@ RUN npm install -g serve
 
 COPY --from=build /app/build ./build
 
-CMD ["sh", "-c", "serve -s build -l ${PORT:-3000}"]
+EXPOSE 8080
+
+CMD ["sh", "-c", "serve -s build -l ${PORT:-8080}"]

@@ -1,5 +1,5 @@
 export class BFFCaller {
-    static readonly BFF_URL = `${process.env.REACT_APP_BFF_BASE_URL}:${process.env.REACT_APP_BFF_PORT}/`;
+    static readonly BFF_URL = `${process.env.REACT_APP_BFF_URL}/`;
     protected static async call(route: string) {
         try {
             const response = await fetch(`${BFFCaller.BFF_URL}${route}`);
