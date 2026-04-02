@@ -15,7 +15,6 @@ services:
     ports:
       - "${BFF_PORT}:3000"
     environment:
-      - FRONT_BASE_URL=${FRONT_BASE_URL}
-      - FRONT_PORT=${FRONT_PORT}
+      - FRONT_URL=${FRONT_URL}
     volumes:
       - "./bff:/app"
