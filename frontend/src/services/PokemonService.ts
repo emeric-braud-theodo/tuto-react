@@ -14,8 +14,8 @@ export interface PokemonList {
 }
 
 export class PokemonService extends BFFCaller {
-    static async getAll(limit: number, offset: number): Promise<PokemonList> {
-        const result = PokemonService.call(`pokemon?limit=${limit}&offset=${offset}`);
+    static async getAll(limit: number, offset: number, query: string): Promise<PokemonList> {
+        const result = PokemonService.call(`pokemon?limit=${limit}&offset=${offset}&q=${query}`);
         return result;
     }
     static async getByName(name: string): Promise<Pokemon> {
