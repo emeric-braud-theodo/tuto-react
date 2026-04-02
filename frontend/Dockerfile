@@ -1,4 +1,4 @@
-FROM node:20
+FROM node:20 AS build
 
 WORKDIR /app
 
@@ -6,6 +6,14 @@ COPY package*.json ./
 RUN npm install
 
 COPY . .
-EXPOSE 3000
+RUN npm run build
 
-CMD ["npm", "start"]
+FROM node:20
+
+WORKDIR /app
+
+RUN npm install -g serve
+
+COPY --from=build /app/build ./build
+
+CMD ["sh", "-c", "serve -s build -l ${PORT:-3000}"]
