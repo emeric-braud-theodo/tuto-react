@@ -5,9 +5,6 @@ export class BFFCaller {
             const response = await fetch(`${BFFCaller.BFF_URL}${route}`);
             console.log("URL appelée =", `${BFFCaller.BFF_URL}${route}`);
             console.log("Status =", response.status);
-            const text = await response.text();
-
-            console.log("Réponse brute =", text);
             const data = await response.json();
             return data;
         } catch (error) {
