@@ -10,8 +10,10 @@ export class PokemonController {
   @Get()
   findAll(
     @Query('limit') limit?: string,
-    @Query('offset') offset?: string
+    @Query('offset') offset?: string,
+    @Query('q') query?: string,
   ): Promise<PokemonListResult> {
+    if (!!query) return this.pokemonService.search(query, limit, offset);
     return this.pokemonService.findAll(limit ? parseInt(limit) : undefined,
       offset ? parseInt(offset) : undefined);
   }
@@ -20,5 +22,6 @@ export class PokemonController {
   findOne(@Param('name') name: string) {
     return this.pokemonService.findOne(name);
   }
+
 
 }
