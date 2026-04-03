@@ -73,3 +73,18 @@ code {
 .pixelated {
   image-rendering: pixelated;
 }
+
+.btn {
+  background: #ff2b05;
+  border: none;
+  color: var(--color-bg);
+  padding: 10px 16px;
+  border-radius: 8px;
+  font-weight: bold;
+  cursor: pointer;
+}
+
+.btn.secondary {
+  background: #2a75bb;
+  color: white;
+}

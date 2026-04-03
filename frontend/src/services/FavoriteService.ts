@@ -1,32 +1,59 @@
-export class FavoriteService {
-    private static readonly KEY = "favorites";
+import { BFFCaller } from '../utils/BFFCaller';
+import { Pokemon } from './PokemonService';
 
-    static getAll(): string[] {
-        return JSON.parse(localStorage.getItem(this.KEY) ?? "[]");
+export class FavoriteService extends BFFCaller {
+    static async getAll(token: string): Promise<string[]> {
+        const favorites = await this.call('favorites', token, {
+            method: 'GET',
+        });
+
+        return favorites.map((fav: { pokemonName: string }) => fav.pokemonName);
+    }
+    static async getAllPokemons(token: string): Promise<Pokemon[]> {
+        const favoritePokemons = await this.call('favorites/pokeFormat', token, {
+            method: 'GET',
+        });
+        return favoritePokemons;
     }
 
-    static isFavorite(name: string): boolean {
-        return this.getAll().includes(name);
+    static async isFavorite(token: string, name: string): Promise<boolean> {
+        const favorites = await this.getAll(token);
+        return favorites.includes(name);
     }
 
-    static toggle(name: string): void {
-        const favs = this.getAll();
-        const exists = favs.includes(name);
-
-        const updated = exists
-            ? favs.filter((n) => n !== name)
-            : [...favs, name];
-
-        localStorage.setItem(this.KEY, JSON.stringify(updated));
+    static async add(token: string, name: string): Promise<void> {
+        await this.call('favorites', token, {
+            method: 'POST',
+            body: JSON.stringify({ pokemonName: name }),
+        });
     }
 
-    static setFavorite(name: string, value: boolean): void {
-        const favs = this.getAll();
+    static async remove(token: string, name: string): Promise<void> {
+        await this.call('favorites', token, {
+            method: 'DELETE',
+            body: JSON.stringify({ pokemonName: name }),
+        });
+    }
 
-        const updated = value
-            ? favs.includes(name) ? favs : [...favs, name]
-            : favs.filter((n) => n !== name);
+    static async toggle(token: string, name: string): Promise<void> {
+        const exists = await this.isFavorite(token, name);
 
-        localStorage.setItem(this.KEY, JSON.stringify(updated));
+        if (exists) {
+            await this.remove(token, name);
+        } else {
+            await this.add(token, name);
+        }
+    }
+
+    static async setFavorite(
+        token: string,
+        name: string,
+        value: boolean,
+    ): Promise<void> {
+        if (value) {
+            await this.add(token, name);
+        } else {
+            await this.remove(token, name);
+        }
     }
 }

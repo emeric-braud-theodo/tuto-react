@@ -3,8 +3,9 @@ import {
     PrimaryGeneratedColumn,
     Column,
     CreateDateColumn,
-    UpdateDateColumn,
+    OneToMany,
 } from 'typeorm';
+import { FavoritePokemon } from '../../favorites/entities/favorite-pokemon.entity';
 
 @Entity('users')
 export class User {
@@ -12,20 +13,14 @@ export class User {
     id: string;
 
     @Column({ unique: true })
+    clerkUserId: string;
+
+    @Column({ unique: true, nullable: true })
     email: string;
-
-    @Column()
-    passwordHash: string;
-
-    @Column({ nullable: true })
-    firstName?: string;
-
-    @Column({ nullable: true })
-    lastName?: string;
 
     @CreateDateColumn()
     createdAt: Date;
 
-    @UpdateDateColumn()
-    updatedAt: Date;
+    @OneToMany(() => FavoritePokemon, (favoritePokemon) => favoritePokemon.user)
+    favoritePokemons: FavoritePokemon[];
 }

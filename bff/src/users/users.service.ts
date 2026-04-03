@@ -2,7 +2,6 @@ import { Injectable } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
 import { Repository } from 'typeorm';
 import { User } from './entities/user.entity';
-import { UpdateUserDto } from './dto/update-user.dto';
 
 @Injectable()
 export class UsersService {
@@ -11,27 +10,26 @@ export class UsersService {
     private readonly usersRepository: Repository<User>,
   ) { }
 
-  create(data: Partial<User>) {
-    const user = this.usersRepository.create(data);
-    return this.usersRepository.save(user);
+  async findOrCreateFromClerk(clerkUserId: string, email?: string) {
+    let user = await this.usersRepository.findOne({
+      where: { clerkUserId },
+    });
+
+    if (!user) {
+      user = this.usersRepository.create({
+        clerkUserId,
+        email: email ?? '',
+      });
+      user = await this.usersRepository.save(user);
+    }
+
+    return user;
   }
 
-  findAll() {
-    return this.usersRepository.find();
-  }
-
-  findOneByEmail(email: string) {
-    return this.usersRepository.findOne({ where: { email } });
-  }
-  findOneById(id: string) {
-    return this.usersRepository.findOne({ where: { id } });
-  }
-
-  remove(id: string) {
-    return this.usersRepository.delete(id);
-  }
-
-  update(id: string, updateUserDto: UpdateUserDto) {
-    return this.usersRepository.update(id, updateUserDto);
+  async findByClerkUserId(clerkUserId: string) {
+    return this.usersRepository.findOne({
+      where: { clerkUserId },
+      relations: ['favoritePokemons'],
+    });
   }
 }

@@ -8,6 +8,8 @@ services:
     environment:
       - CHOKIDAR_USEPOLLING=true
       - REACT_APP_BFF_URL=${REACT_APP_BFF_URL}
+    env_file:
+      - .env.local
     volumes:
       - "./frontend:/app"
   bff:
@@ -24,6 +26,8 @@ services:
       - DB_URL=${DB_URL}
       - DB_HOST=${DB_HOST}
       - DB_PORT=${DB_PORT}
+    env_file:
+      - .env.local
     volumes:
       - "./bff:/app"
   db:

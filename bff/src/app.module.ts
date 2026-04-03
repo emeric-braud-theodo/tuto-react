@@ -3,6 +3,7 @@ import { ConfigModule, ConfigService } from '@nestjs/config';
 import { TypeOrmModule } from '@nestjs/typeorm';
 import { PokemonModule } from './pokemon/pokemon.module';
 import { UsersModule } from './users/users.module';
+import { FavoritesModule } from './favorites/favorites.module';
 
 @Module({
   imports: [
@@ -25,6 +26,7 @@ import { UsersModule } from './users/users.module';
     }),
     PokemonModule,
     UsersModule,
+    FavoritesModule
   ],
 })
 export class AppModule { }
