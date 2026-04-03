@@ -139,12 +139,12 @@ function PokemonPage() {
                             <div className="grid grid-cols-2 gap-3 text-sm">
                                 <div className="p-3 rounded-xl bg-gray-50">
                                     <p className="text-gray-500">Taille</p>
-                                    <p className="font-semibold text-black">{data.height ?? 0 / 10} mm</p>
+                                    <p className="font-semibold text-black">{(data.height ?? 0) / 10} m</p>
                                 </div>
 
                                 <div className="p-3 rounded-xl bg-gray-50">
                                     <p className="text-gray-500">Poids</p>
-                                    <p className="font-semibold text-black">{data.weight ?? 0}/10 kg</p>
+                                    <p className="font-semibold text-black">{(data.weight ?? 0) / 10} kg</p>
                                 </div>
 
                                 <div className="p-3 rounded-xl bg-gray-50 col-span-2">
