@@ -135,6 +135,7 @@ function PokemonPage() {
                         </section>
 
                         <section>
+
                             <h2 className="text-xl font-bold mb-2">Informations</h2>
                             <div className="grid grid-cols-2 gap-3 text-sm">
                                 <div className="p-3 rounded-xl bg-gray-50">
